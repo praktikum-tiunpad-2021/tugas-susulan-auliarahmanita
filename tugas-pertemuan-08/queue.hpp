@@ -9,7 +9,8 @@ namespace priority_queue {
  */
 template <typename T>
 struct Element {
-  // Implementasikan di sini.
+  T data, priority;
+  Element *next;
 };
 
 template <typename T>
@@ -20,7 +21,7 @@ using ElementPtr = Element<T> *;
  */
 template <typename T>
 struct Queue {
-  // Implementasikan di sini.
+   ElementPtr<T> Head, Tail;
 };
 
 /**
@@ -30,7 +31,10 @@ struct Queue {
  */
 template <typename T>
 Queue<T> new_queue() {
-  // Implementasikan di sini.
+  Queue<T> Q;
+  Q.Head = nullptr;
+  Q.Tail = nullptr;
+  return Q;
 }
 
 /**
@@ -42,8 +46,49 @@ Queue<T> new_queue() {
  */
 template <typename T>
 void enqueue(Queue<T> &q, const T &value, int priority) {
-  // Implementasikan di sini.
+  ElementPtr<T> pNew = new Element<T>;
+  pNew -> data = value;
+  pNew -> priority = priority;
+  pNew -> next = nullptr;
+
+if (q.Head == nullptr && q.Tail == nullptr) {
+    q.Head = pNew;
+    q.Tail = pNew;
+  }
+
+  else {
+    ElementPtr<T> temp = q.Head;
+    ElementPtr<T> pRev = nullptr;
+
+    while (pNew -> priority <= temp -> priority) {
+      if (temp -> next == nullptr) {
+        break;
+      }
+      
+      pRev = temp;
+      temp = temp -> next;
+    }
+    
+    // Insert First
+    if (temp == q.Head && pNew -> priority > temp -> priority) {
+      pNew -> next = temp;
+      q.Head = pNew;
+    }
+
+    // Insert Last
+    else if (temp == q.Tail && pNew->priority < temp -> priority) {
+      temp -> next = pNew;
+      q.Tail = pNew;
+    }
+
+    // Insert Middle
+    else {
+      pRev -> next = pNew;
+      pNew -> next = temp;
+    }
+  }
 }
+
 
 /**
  * @brief mengembalikan isi dari elemen head.
@@ -53,7 +98,7 @@ void enqueue(Queue<T> &q, const T &value, int priority) {
  */
 template <typename T>
 T top(const Queue<T> &q) {
-  // Implementasikan di sini.
+  return q.Head -> data;
 }
 
 /**
@@ -63,7 +108,22 @@ T top(const Queue<T> &q) {
  */
 template <typename T>
 void dequeue(Queue<T> &q) {
-  // Implementasikan di sini.
+  ElementPtr<T> pDel;
+  if (q.Head == nullptr && q.Tail == nullptr) {
+    pDel = nullptr;
+  }
+
+  else if (q.Head -> next == nullptr) {
+    pDel = q.Head;
+    q.Head = nullptr;
+    q.Tail = nullptr;
+  }
+
+  else {
+    pDel = q.Head;
+    q.Head = q.Head -> next;
+    pDel -> next = nullptr;
+  }
 }
 
 }  // namespace priority_queue
