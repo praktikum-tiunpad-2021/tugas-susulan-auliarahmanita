@@ -10,19 +10,22 @@ const float pi = 3.14f;
  * @brief Tipe data lingkaran
  */
 struct Lingkaran {
-  // TODO: Implementasi struct di sini
+  float jari;
 };
 
 /**
  * @brief Tipe data silinder
  */
 struct Silinder {
-  // TODO: Implementasi struct di sini
+  float tinggi;
+  Lingkaran lingkaran;
 };
 
 /**
  * @brief Tipe data balok
  */
 struct Balok {
-  // TODO: Implementasi struct di sini
+  float p;
+  float l;
+  float t;
 };
