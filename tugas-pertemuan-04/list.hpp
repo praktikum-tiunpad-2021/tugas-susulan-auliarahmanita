@@ -8,7 +8,8 @@
  * 
  */
 struct SingleNode{
-  // TODO: Implementasi struct di sini
+  int data;
+  SingleNode* next;
 };
 
 /**
@@ -18,7 +19,9 @@ struct SingleNode{
  *        Jika terdapat error, tipe data dari atribut dapat berpengaruh.
  */
 struct DoubleNode{
-  // TODO: Implementasi struct di sini
+  int data;
+  DoubleNode* next;
+  DoubleNode* prev;
 };
 
 typedef SingleNode* SinglePointer;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "list.hpp"
+#include "structs.hpp"
 
 /**
  * @brief       Membuat sebuah single node baru.
@@ -116,7 +116,7 @@ int dataAt(SinglePointer head, int index);
 void sortAscending(SinglePointer& head);
 
 /**
- * @brief       Membalikkan list dengan memasukkannya ke list baru.
+ * @brief       Mengurutkan list secara ascending.
  * 
  * @param head  Node yang menjadi muka dari sebuah list.
  * 
