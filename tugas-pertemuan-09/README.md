@@ -3,7 +3,7 @@
 
 > Materi: Tree (BST)  
 > Pengajar: Asisten Praktikum 2021
-## NAMA - NPM
+## Aulia Rahmanita - 140810200004
 
 **Harap untuk membaca instruksi terlebih dahulu sampai dipahami!**
 
