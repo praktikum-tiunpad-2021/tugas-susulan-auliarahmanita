@@ -28,13 +28,14 @@ Stack<T> Top;
 /**
  * @brief Membuat dan menginisialisasi stack baru
  * @param Top       pointer ke puncak stack
+ * @param data      data yang akan dicari
  * 
  * @return          pointer ke puncak stack
  */
 template <typename T>
 Stack<T> createStack(Stack<T> Top) {
-  // TODO: Implementasikan!
-  return nullptr;
+  Top = nullptr;
+  return Top;
 }
 
 /**
@@ -44,7 +45,9 @@ Stack<T> createStack(Stack<T> Top) {
  */
 template <typename T>
 void createElement(pointer<T>& newElement, T data) {
-  // TODO: Implementasikan!
+ newElement = new Node<T>;
+ newElement->data = data;
+ newElement->next = nullptr;
 }
 
 /**
@@ -56,7 +59,7 @@ void createElement(pointer<T>& newElement, T data) {
 template <typename T>
 T peek(Stack<T> Top) {
   // TODO: Implementasikan!
-  return nullptr;
+  return Top->data;
 }
 
 /**
@@ -67,8 +70,7 @@ T peek(Stack<T> Top) {
  */
 template <typename T>
 bool isEmpty(Stack<T> Top) {
-  // TODO: Implementasikan!
-  return false;
+  return Top !=nullptr ? false:true;
 }
 
 /**
@@ -80,7 +82,8 @@ bool isEmpty(Stack<T> Top) {
  */
 template <typename T>
 Stack<T> push(Stack<T> Top, pointer<T> newElement) {
-  // TODO: Implementasikan!
+  newElement->next = Top;
+  Top = newElement;
   return Top;
 }
 
@@ -93,7 +96,10 @@ Stack<T> push(Stack<T> Top, pointer<T> newElement) {
  */
 template <typename T>
 Stack<T> pop(Stack<T>& Top, pointer<T> delElement) {
-  // TODO: Implementasikan!  
+  delElement = Top;
+  if(Top != nullptr){
+    Top=Top->next;
+  }
   return delElement;
 }
 
@@ -107,7 +113,11 @@ Stack<T> pop(Stack<T>& Top, pointer<T> delElement) {
 template <typename T>
 Stack<T> lastNode(Stack<T> Top) {
   pointer<T> pHelp = Top;
-  // TODO: Implementasikan!
+  if(pHelp != nullptr){
+    while(pHelp->next != nullptr){
+      pHelp=pHelp->next;
+    }
+  }
   return pHelp;
 }
 
