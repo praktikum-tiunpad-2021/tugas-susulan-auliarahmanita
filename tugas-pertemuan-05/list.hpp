@@ -5,7 +5,7 @@ namespace strukdat {
 namespace circular_list {
 
 /**
- * @brief Node linked list berisi nilai bertipe `T` yang disimpan pada `data`
+ * @brief Node linked list berisi nilai bertipe T yang disimpan pada data
  */
 template <typename T>
 struct Node {
@@ -32,8 +32,10 @@ using NodePtr = Node<T> *;
  */
 template <typename T>
 NodePtr<T> new_list() {
-  // TODO: Implementasikan!
-  return nullptr;
+  NodePtr<T> head = new Node<T>;
+  head -> next = head;
+  head -> prev = head;
+  return head;
 }
 
 /**
@@ -43,7 +45,13 @@ NodePtr<T> new_list() {
  */
 template <typename T>
 void destroy_list(NodePtr<T> head) {
-  // TODO: Implementasikan!
+  NodePtr<T> temp = head -> next;
+  NodePtr<T> del;
+  while(temp!=head){
+    del = temp;
+    temp = temp -> next;
+    delete del;
+  }
 }
 
 /**
@@ -55,8 +63,13 @@ void destroy_list(NodePtr<T> head) {
  */
 template <typename T>
 NodePtr<T> push_front(NodePtr<T> head, const T &data) {
-  // TODO: Implementasikan!
-  return nullptr;
+  NodePtr<T> baru = new Node<T>;
+  baru -> data = data;
+  baru -> prev = head;
+  baru -> next = head -> next;
+  head -> next -> prev = baru;
+  head -> next = baru;
+  return baru;
 }
 
 /**
@@ -68,8 +81,13 @@ NodePtr<T> push_front(NodePtr<T> head, const T &data) {
  */
 template <typename T>
 NodePtr<T> push_back(NodePtr<T> head, const T &data) {
-  // TODO: Implementasikan!
-  return nullptr;
+  NodePtr<T> baru = new Node <T>;
+  baru -> data = data;
+  baru -> next = head;
+  baru -> prev = head -> prev;
+  head -> prev -> next = baru;
+  head -> prev = baru;
+  return baru;
 }
 
 /**
@@ -81,8 +99,13 @@ NodePtr<T> push_back(NodePtr<T> head, const T &data) {
  */
 template <typename T>
 NodePtr<T> insert_after(NodePtr<T> position, const T &data) {
-  // TODO: Implementasikan!
-  return nullptr;
+  NodePtr<T> baru = new Node<T>;
+  baru -> data = data;
+  baru -> prev = position;
+  baru -> next = position -> next;
+  position -> next -> prev = baru;
+  position -> next = baru;
+  return baru;
 }
 
 /**
@@ -95,7 +118,13 @@ NodePtr<T> insert_after(NodePtr<T> position, const T &data) {
  */
 template <typename T>
 void erase(NodePtr<T> const head, NodePtr<T> position) {
-  // TODO: Implementasikan!
+  NodePtr<T> help = position -> next;
+  NodePtr<T> help1 = position -> prev;
+  help -> prev = help1;
+  help1 -> next = help;
+  position -> next = nullptr;
+  position -> prev = nullptr;
+  delete position;
 }
 
 /**
@@ -106,7 +135,11 @@ void erase(NodePtr<T> const head, NodePtr<T> position) {
  */
 template <typename T, typename F>
 void for_each(NodePtr<T> head, F func) {
-  // TODO: Implementasikan!
+  NodePtr<T> help = head -> next;
+  while(help!=head){
+    func(help -> data);
+    help = help -> next;
+  }
 }
 /**
  * @brief Mencari node yang memiliki data tertentu
@@ -114,11 +147,17 @@ void for_each(NodePtr<T> head, F func) {
  * @param head      pointer ke sentinel node
  * @param data      data yang akan dicari
  * @return          pointer ke node yang pertama kali ditemukan memiliki data.
- *                  `nullptr` jika tidak ditemukan
+ *                  nullptr jika tidak ditemukan
  */
 template <typename T>
 NodePtr<T> find(NodePtr<T> head, const T &data) {
-  // TODO: Implementasikan!
+  NodePtr<T> help = head -> next;
+  while(help!=head){
+    if(help -> data == data){
+      return help;
+    }
+    help = help -> next;
+  }
   return nullptr;
 }
 
