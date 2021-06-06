@@ -3,78 +3,68 @@
 #include <string>
 
 /**
- * @brief Mengecek sebuah bilangan bulat apakah termasuk bilangan prima atau tidak.
+ * @brief Mengembalikan dua kali nilai dengan pointer.
  * @note
  * Misal:
- *    7 -> prima
- *    58 -> bukan prima
- *    101 -> prima
+ *    5 -> 10
+ *    32 -> 64
  * @example
- *    val1 = is_prime(101); // true
- *    val2 = is_prime(58);  // false
+ *    int val1 = *multiply_by_two(5);
+ *    // val1 == 10
+ *    int val2 = *multiply_by_two(43);
+ *    // val2 == 86
  *
- * @param n   bilangan bulat positif
- * @return    apakah bilangan prima atau tidak
+ * @param n   bilangan bulat yang akan dimultiplikasi
+ * @return    pointer yang merujuk ke n
  */
-bool is_prime(int n);
+int *multiply_by_two(int &n);
 
 /**
- * @brief Menghitung faktorial dari sebuah bilangan bulat positif.
+ * @brief Mengembalikan string dari karakter ke-3 dan ke-5 yang didapatkan dari pointer to array of char.
  * @note
  * Misal:
- *    2! == 2 * 1 == 2
- *    4! == 4 * 3 * 2 * 1 == 24
+ *    "Maria" -> "ra"
+ *    "Dstorv" -> "tr"
  * @example
- *    val = factorial(4);
- *    // val == 24
+ *    char str[] = "Velvid";
+ *    std::string val = the_third_and_fifth(str);
+ *    // val == "li"
  *
- * @param n   bilangan bulat positif
- * @return    faktorial dari `n`
+ * @param ptr pointer to array of char
+ * @return    string yang diperoleh dari karakter ke-3 dan ke-5 dari array of char 
  */
-unsigned int factorial(unsigned int n);
+std::string the_third_and_fifth(char *ptr);
 
 /**
- * @brief Melakukan sort pada integer array secara ascending dan in-place.
+ * @brief Mencari panjang array of char dengan pointer.
  * @note
  * Misal:
- *    5, 2, 3, 1 -> 1, 2, 3, 5
+ *    "Heart" -> 5
+ * NOTE: JANGAN GUNAKAN FUNGSI strlen()
  * @example
- *    arr = {5, 2, 3, 1};
- *    inplace_sort(4, arr)
- *    // val == {1, 2, 3, 5}
+ *    char str[] = "Wolf";
+ *    int val = my_own_strlen(str);
+ *    // val == 4
  *
- * @param n   ukuran array
- * @param arr array yang akan di-sort
+ * @param   ptr pointer to array of char
+ * @return  panjang array (integer)
  */
-void inplace_sort(size_t n, int arr[]);
+int my_own_strlen(char *ptr);
 
 /**
- * @brief Membalik sebuah string secara in-place.
+ * @brief Menukar dua elemen pada array pada index ke-n menggunakan pointer.
  * @note
  * Misal:
- *    "John Doe" -> "eoD nhoJ"
- *    "1234" -> "4321"
+ *    {1, 2, 3} | {4, 5, 6} | (2) -> {1, 2, 6} | {4, 5, 3}
  * @example
- *    std::string s1 = "1234";
- *    inplace_reverse_str(s1);
- *    // s1 == "4321"
+ *    int arr1[]{1, 2, 3};
+ *    int arr2[]{4, 5, 6};
+ *    element_swapper(arr1, arr2, 2);
+ *    // arr1 == {1, 2, 6}
+ *    // arr2 == {4, 5, 3}
  *
- * @param str   string yang akan dibalik secara in-place
+ * @param ptr1  pointer yang menunjuk ke array pertama
+ * @param ptr2  pointer yang menunjuk ke array kedua
+ * @param n     index elemen array yang akan ditukar
  */
-void inplace_reverse_str(std::string &str);
-
-/**
- * @brief Membalik sebuah string.
- * @note
- * Misal:
- *    "John Doe" -> "eoD nhoJ"
- *    "1234" -> "4321"
- * @example
- *    std::string s1 = "1234";
- *    std::string s2 = reverse_str(s1);
- *    // s2 == "4321"
- *
- * @param str   string yang akan dibalik
- * @return      hasil pembalikan string
- */
-std::string reverse_str(const std::string &str);
+void element_swapper(int *ptr1, int *ptr2, int n);

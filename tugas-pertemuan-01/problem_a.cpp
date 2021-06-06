@@ -1,26 +1,37 @@
 #include "problem_a.hpp"
 
-bool is_prime(int n)
+int *multiply_by_two(int &n)
 {
-  // TODO: Implementasikan!
+      n *=2;
+        return &n;
 }
 
-unsigned int factorial(unsigned int n)
+std::string the_third_and_fifth(char *ptr)
 {
-  // TODO: Implementasikan!
+  std::string hasil;
+  hasil += *(&ptr[2]); 
+  hasil += *(&ptr[4]);
+  
+  return hasil;
 }
 
-void inplace_sort(size_t n, int arr[])
+int my_own_strlen(char *ptr)
 {
-  // TODO: Implementasikan!
+   int length = 0;
+  
+  while(1){
+    if (*(&ptr[length]) == 0){
+      break;
+    }
+    length++;
+  }
+
+  return length;
 }
 
-void inplace_reverse_str(std::string &str)
+void element_swapper(int *ptr1, int *ptr2, int n)
 {
-  // TODO: Implementasikan!
-}
-
-std::string reverse_str(const std::string &str)
-{
-  // TODO: Implementasikan!
+  int temp = ptr1[n];
+  *&ptr1[n] = *&ptr2[n];
+  *&ptr2[n] = temp;
 }
