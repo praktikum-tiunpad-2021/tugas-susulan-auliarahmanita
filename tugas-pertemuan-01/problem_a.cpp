@@ -1,37 +1,69 @@
 #include "problem_a.hpp"
 
-int *multiply_by_two(int &n)
+bool is_prime(int n)
 {
-      n *=2;
-        return &n;
-}
-
-std::string the_third_and_fifth(char *ptr)
-{
-  std::string hasil;
-  hasil += *(&ptr[2]); 
-  hasil += *(&ptr[4]);
-  
-  return hasil;
-}
-
-int my_own_strlen(char *ptr)
-{
-   int length = 0;
-  
-  while(1){
-    if (*(&ptr[length]) == 0){
-      break;
+    if (n <= 1) {
+        return false;
     }
-    length++;
+
+    else {
+        for (int i = 2; i <= n/2; i++) {
+            if (n % i == 0) {
+                return false;
+                break;
+            }
+        }
+
+        return true;
+    }
+}
+
+unsigned int factorial(unsigned int n)
+{
+    if (n < 1)
+    {
+        return 1;
+    }
+
+    int f = 1;
+    for (int i = n; i >= 1; i--)
+    {
+        f *= i;
+    }
+
+    return f;
+}
+
+void inplace_sort(size_t n, int arr[])
+{
+  for(size_t i = 0; i < n - 1; i++)
+  {
+    for(size_t j = 0; j < n - i - 1; j++)
+    {
+      if(arr[j+1] < arr[j])
+      {
+        std::swap(arr[j+1], arr[j]);
+      }
+    }
+  }
+}
+
+void inplace_reverse_str(std::string &str)
+{
+  for(size_t i = 0; i < str.size() / 2; i++)
+  {
+    std::swap(str[i], str[str.size() - i - 1]);
+  }
+}
+
+std::string reverse_str(const std::string &str)
+{
+ std::string tempt = str;
+
+  for(size_t i = 0; i < tempt.size() / 2; i++)
+  {
+    std::swap(tempt[i], tempt[tempt.size() - i - 1]);
   }
 
-  return length;
-}
-
-void element_swapper(int *ptr1, int *ptr2, int n)
-{
-  int temp = ptr1[n];
-  *&ptr1[n] = *&ptr2[n];
-  *&ptr2[n] = temp;
+  return tempt;
 }
