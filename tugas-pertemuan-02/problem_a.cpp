@@ -2,20 +2,36 @@
 
 int *multiply_by_two(int &n)
 {
-  // TO-DO: Implementasi fungsi di sini
+      n *=2;
+        return &n;
 }
 
 std::string the_third_and_fifth(char *ptr)
 {
-  // TO-DO: Implementasi fungsi di sini
+  std::string hasil;
+  hasil += *(&ptr[2]); 
+  hasil += *(&ptr[4]);
+  
+  return hasil;
 }
 
 int my_own_strlen(char *ptr)
 {
-  // TO-DO: Implementasi fungsi di sini
+   int length = 0;
+  
+  while(1){
+    if (*(&ptr[length]) == 0){
+      break;
+    }
+    length++;
+  }
+
+  return length;
 }
 
 void element_swapper(int *ptr1, int *ptr2, int n)
 {
-  // TO-DO: Implementasi fungsi di sini
+  int temp = ptr1[n];
+  *&ptr1[n] = *&ptr2[n];
+  *&ptr2[n] = temp;
 }
